@@ -4,18 +4,17 @@ pragma solidity ^0.8.10;
 
 import "./OpenzeppelinERC721.sol";
 
-contract SimpleNFT is ERC721Enumerable {
+contract MetaRamen is ERC721Enumerable {
     address public owner;
     string ipfsURI = "ipfs://QmUFmzqAisPJPtE3YNYmCZR9ccEhESMQaNt6Y3ZcFbqBhg";
 
     mapping(address => uint) public addressMintedMap;
 
-    // [TODO] address変更
     address myWallet = 0xD4B45FD5B4Ee16364A4f2DcA3837c5F1FCcacfaa;
     
-    constructor() ERC721("SimpleNFT" , "SN" ) {
+    constructor() ERC721("MetaRamen" , "MR" ) {
         owner = msg.sender; 
-        _safeMint( msg.sender , 0);
+        _safeMint(msg.sender , 0);
     }
 
      function _baseURI()internal view override returns(string memory){
@@ -34,6 +33,6 @@ contract SimpleNFT is ERC721Enumerable {
     }
 
     function tokenURI(uint256 tokenId) public view override returns(string memory) {
-        return super.tokenURI(tokenId);
+        return ipfsURI;
     }
 }
